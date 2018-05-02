@@ -10,11 +10,13 @@ class ColourField(models.Field):
     it's AdminCharWidget or whatever, and we want to use our own.
     """
     
-    __metaclass__ = models.SubfieldBase
     _south_introspects = True
     
     description = "A colour object"
-    
+
+    def from_db_value(self, value):
+        return value
+
     def to_python(self, value):
         # assert value[0] == "#" 
         # assert re.match('#[0-9a-fA-F]{6}', value)
